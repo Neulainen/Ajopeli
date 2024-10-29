@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlotSetManager : MonoBehaviour
+public class BuildingManager : MonoBehaviour
 {
-    public Transform[] Slots;
+    float speed;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,11 +14,11 @@ public class SlotSetManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        speed = GameObject.Find("=Player=").GetComponent<PlayerManager>().speed;
+        Movement();
     }
-    void GenerateSlots()
+    void Movement()
     {
-
-
+        transform.Translate(Vector3.back*speed*Time.deltaTime);
     }
 }
