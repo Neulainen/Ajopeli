@@ -530,6 +530,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1199550941}
   mainColl: {fileID: 1199550942}
+  gearSpeeds: 00000a000f00190023002d003200
+  curSpeed: 0
+  turboMod: 1.5
+  curGear: 0
 --- !u!54 &1199550941
 Rigidbody:
   m_ObjectHideFlags: 0

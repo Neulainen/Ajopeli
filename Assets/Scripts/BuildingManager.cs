@@ -14,7 +14,7 @@ public class BuildingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speed = GameObject.Find("=Player=").GetComponent<PlayerManager>().speed;
+        speed = GameObject.Find("=Player=").GetComponent<PlayerManager>().curSpeed;
         Movement();
     }
     void Movement()
