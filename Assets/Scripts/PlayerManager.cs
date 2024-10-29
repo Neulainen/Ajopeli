@@ -42,7 +42,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (Input.GetButtonDown("GearUp"))
         {
-            if (curGear < 6)
+            if (curGear < gearSpeeds.Length-1)
             {
                 curGear++;
             }
@@ -78,7 +78,7 @@ public class PlayerManager : MonoBehaviour
         float finalSpeed;
 
         finalSpeed = gearSpeeds[gear] * 1 + (Turbo() * turboMod);
-
         return finalSpeed;
+
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
@@ -7,10 +5,12 @@ public class BuildingManager : MonoBehaviour
     float speed;
     public GameObject[] deco;
     public Transform[] decoSlot;
+    Transform DestructionPoint;
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < decoSlot.Length; i++) 
+        DestructionPoint = GameObject.Find("DestructionPoint").transform;
+        for (int i = 0; i < decoSlot.Length; i++)
         {
             Instantiate(deco[Random.Range(0, deco.Length)], decoSlot[i]);
         }
@@ -24,6 +24,11 @@ public class BuildingManager : MonoBehaviour
     }
     void Movement()
     {
-        transform.Translate(Vector3.back*speed*Time.deltaTime);
+        transform.Translate(Vector3.back * speed * Time.deltaTime);
+        if (transform.position.z < DestructionPoint.position.z)
+        {
+            Destroy(gameObject);
+        }
     }
+
 }
