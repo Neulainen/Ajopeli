@@ -10,14 +10,14 @@ public class EnviromentGeneration : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenerateBuilding();
+        InvokeRepeating("GenerateBuilding", 0, 2);
     }
 
     // Update is called once per frame
     void Update()
     {
-
         
+
     }
     void GenerateBuilding()
     {

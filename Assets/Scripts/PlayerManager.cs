@@ -9,6 +9,8 @@ public class PlayerManager : MonoBehaviour
     public float curSpeed;
     public float turboMod = .5f;
     public short curGear = 1;
+
+    public float[] steerSpeeds;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,12 +27,16 @@ public class PlayerManager : MonoBehaviour
         changeGear();
         Turbo();
         curSpeed = DetermineSpeed(curGear);
-        Movement();
+        Movement(Input.GetAxis("Horizontal"));
 
     }
-    void Movement()
+    void Movement(float input)
     {
+       
 
+        transform.Translate(new Vector3(input * Time.deltaTime * steerSpeeds[curGear], 0, 0));
+
+        
     }
     void changeGear()
     {
