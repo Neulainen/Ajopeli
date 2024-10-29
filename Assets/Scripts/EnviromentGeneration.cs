@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CamManager : MonoBehaviour
+public class EnviromentGeneration : MonoBehaviour
 {
-    public Transform camPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,8 +11,8 @@ public class CamManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
-        transform.position = camPoint.transform.position; 
+        
     }
 }
