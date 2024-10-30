@@ -5,6 +5,9 @@ public class BuildingManager : MonoBehaviour
     float speed;
     public GameObject[] deco;
     public Transform[] decoSlot;
+    public Color[] WindowColor;
+    public bool isBuilding;
+    
     Transform DestructionPoint;
     // Start is called before the first frame update
     void Start()
@@ -14,6 +17,12 @@ public class BuildingManager : MonoBehaviour
         {
             Instantiate(deco[Random.Range(0, deco.Length)], decoSlot[i]);
         }
+        if (isBuilding) 
+        { 
+        //Arvo ikkunoille väri
+        }
+
+      
     }
 
     // Update is called once per frame
