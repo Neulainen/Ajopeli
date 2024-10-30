@@ -7,10 +7,13 @@ public class PlayerManager : MonoBehaviour
 
     public short[] gearSpeeds;
     public float curSpeed;
+    public float SteerInput;
     public float turboMod = .5f;
     public short curGear = 1;
 
     public float[] steerSpeeds;
+
+    public Transform carBody;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,11 +26,13 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       SteerInput = Input.GetAxis("Horizontal");
         changeGear();
         Turbo();
         curSpeed = DetermineSpeed(curGear);
-        Movement(Input.GetAxis("Horizontal"));
+        Movement(SteerInput);
+
+         
 
     }
     void Movement(float input)
@@ -35,8 +40,8 @@ public class PlayerManager : MonoBehaviour
        
 
         transform.Translate(new Vector3(input * Time.deltaTime * steerSpeeds[curGear], 0, 0));
-
-        
+        transform.position = new Vector3(transform.position.x, 0, 0);
+        //carBody.Rotate(Vector3.up, SteerInput * steerSpeeds[curGear] /10);
     }
     void changeGear()
     {
@@ -55,10 +60,6 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
-    }
-    short RPM()
-    {
-        return 1000;
     }
     short Turbo()
     {

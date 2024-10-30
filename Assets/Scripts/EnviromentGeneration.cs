@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class EnviromentGeneration : MonoBehaviour
 {
-
+    public int Difficulty;
     public Transform[] BuildingSlots;
     public GameObject[] Buildings;
 
-    public Transform StreeLightPos;
-    public GameObject StreetLightModel;
+    public Transform RoadPos;
+    public GameObject Road;
+
+    public Transform[] ObstaclePoints;
+    public GameObject ObstacleTemplate;
+    
+    //Used for spawning the buildings in correct intervals
+    public Transform SpawnDeterminatorSpawn;
+    public GameObject SpawnDeterminator;
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("GenerateBuilding", 0, 2);
-        InvokeRepeating("GenerateLights", 0, 2);
+        DoGeneration();
     }
 
     // Update is called once per frame
@@ -23,17 +29,32 @@ public class EnviromentGeneration : MonoBehaviour
         
 
     }
-    void GenerateBuilding()
+    public void DoGeneration()
+    {
+        GenerateBuilding();
+        GenerateRoad();
+        GenerateObstacle();
+        Instantiate(SpawnDeterminator, SpawnDeterminatorSpawn.position, SpawnDeterminatorSpawn.rotation);
+    }
+    public void GenerateBuilding()
     {
       for (int i = 0; i < BuildingSlots.Length; i++)
         {
             Instantiate(Buildings[Random.Range(0, Buildings.Length)], BuildingSlots[i].transform);
         }
-
+        
+       
     }
-    void GenerateLights()
+    void GenerateRoad()
     {
-        Instantiate(StreetLightModel, StreeLightPos);
+        Instantiate(Road, RoadPos);
+    }
+    void GenerateObstacle()
+    {
+        for (int i = 0;i < ObstaclePoints.Length && i < Difficulty+1; i++)
+        {
+            Instantiate(ObstacleTemplate, ObstaclePoints[i]);
+        }
     }
 
 }
