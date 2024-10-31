@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour
 {
-    Transform DestructionPoint;
     float speed;
+    bool endGame;
+    Transform DestructionPoint;
+    
+    
     public Transform[] ObstaclePoints;
     public GameObject[] Obstacles;
     public GameObject[] Rewards;
@@ -20,11 +23,15 @@ public class ObstacleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speed = GameObject.Find("=Player=").GetComponent<PlayerManager>().curSpeed;
-        transform.Translate(Vector3.back * speed * Time.deltaTime);
-        if (transform.position.z < DestructionPoint.position.z)
+        endGame = GameObject.Find("=Player=").GetComponent<PlayerManager>().endGame;
+        if (!endGame)
         {
-            Destroy(gameObject);
+            speed = GameObject.Find("=Player=").GetComponent<PlayerManager>().curSpeed;
+            transform.Translate(Vector3.back * speed * Time.deltaTime);
+            if (transform.position.z < DestructionPoint.position.z)
+            {
+                Destroy(gameObject);
+            }
         }
     }
     bool IsLucky()
@@ -42,7 +49,6 @@ public class ObstacleManager : MonoBehaviour
     void AttemptGeneration(bool isLucky)
     {
         int SafePoint = Random.Range(0, ObstaclePoints.Length);
-        Debug.Log(SafePoint);
         for(int i = 0; i < ObstaclePoints.Length; i++)
         {
             if (i != SafePoint&&!isLucky)

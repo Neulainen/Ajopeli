@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public Rigidbody rb;
+   
     public BoxCollider mainColl;
+
+    public bool endGame;
 
     public short[] gearSpeeds;
     public float curSpeed;
@@ -14,13 +16,13 @@ public class PlayerManager : MonoBehaviour
     public float[] steerSpeeds;
 
     public Transform carBody;
+
+    public int PlayerLives, PlayerLivesMax;
     // Start is called before the first frame update
     void Start()
-    {
-        rb = GetComponent<Rigidbody>();
+    {     
         mainColl = GetComponent<BoxCollider>();
-
-
+        PlayerLives = PlayerLivesMax;
     }
 
     // Update is called once per frame
@@ -37,26 +39,30 @@ public class PlayerManager : MonoBehaviour
     }
     void Movement(float input)
     {
-       
-
-        transform.Translate(new Vector3(input * Time.deltaTime * steerSpeeds[curGear], 0, 0));
-        transform.position = new Vector3(transform.position.x, 0, 0);
-        //carBody.Rotate(Vector3.up, SteerInput * steerSpeeds[curGear] /10);
+        if (!endGame)
+        {
+            transform.Translate(new Vector3(input * Time.deltaTime * steerSpeeds[curGear], 0, 0));
+            transform.position = new Vector3(transform.position.x, 0, 0);
+            //carBody.Rotate(Vector3.up, SteerInput * steerSpeeds[curGear] /10);
+        }
     }
     void changeGear()
     {
-        if (Input.GetButtonDown("GearUp"))
+        if (!endGame)
         {
-            if (curGear < gearSpeeds.Length-1)
+            if (Input.GetButtonDown("GearUp"))
             {
-                curGear++;
+                if (curGear < gearSpeeds.Length - 1)
+                {
+                    curGear++;
+                }
             }
-        }
-        else if (Input.GetButtonDown("GearDown"))
-        {
-            if (curGear > 1)
+            else if (Input.GetButtonDown("GearDown"))
             {
-                curGear--;
+                if (curGear > 1)
+                {
+                    curGear--;
+                }
             }
         }
 
@@ -77,9 +83,55 @@ public class PlayerManager : MonoBehaviour
     float DetermineSpeed(short gear)
     {
         float finalSpeed;
-
         finalSpeed = gearSpeeds[gear] * 1 + (Turbo() * turboMod);
         return finalSpeed;
 
+    }
+    void TakeLife()
+    {
+        PlayerLives--;
+        if(PlayerLives < 0)
+        {
+            GameOver();
+        }
+
+    }
+    void GetReward()
+    {
+
+    }
+    void GameOver()
+    {
+        endGame = true;
+    }
+    void Crash()
+    {
+
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+       
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            Debug.Log("Kolari");
+            Crash();
+            TakeLife();
+        }
+        else if(collision.gameObject.CompareTag("Collectible"))
+        {
+            Debug.Log("Palkinto");
+            GetReward();
+        }
+        else if (collision.gameObject.CompareTag("Wall"))
+        {
+            if (collision.gameObject.name == "WallL")
+            {
+                Debug.Log("osuma vas");
+            }
+            else if( collision.gameObject.name == "WallR")
+            {
+                Debug.Log("Osuma oik");
+            }
+        }
     }
 }

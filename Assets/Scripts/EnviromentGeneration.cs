@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnviromentGeneration : MonoBehaviour
 {
+    bool endGame;
+
     public int Difficulty;
     public Transform[] BuildingSlots;
     public GameObject[] Buildings;
@@ -13,7 +13,7 @@ public class EnviromentGeneration : MonoBehaviour
 
     public Transform[] ObstaclePoints;
     public GameObject ObstacleTemplate;
-    
+
     //Used for spawning the buildings in correct intervals
     public Transform SpawnDeterminatorSpawn;
     public GameObject SpawnDeterminator;
@@ -26,24 +26,27 @@ public class EnviromentGeneration : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        endGame = GameObject.Find("=Player=").GetComponent<PlayerManager>().endGame;
 
     }
     public void DoGeneration()
     {
-        GenerateBuilding();
-        GenerateRoad();
-        GenerateObstacle();
-        Instantiate(SpawnDeterminator, SpawnDeterminatorSpawn.position, SpawnDeterminatorSpawn.rotation);
+        if (!endGame)
+        {
+            GenerateBuilding();
+            GenerateRoad();
+            GenerateObstacle();
+            Instantiate(SpawnDeterminator, SpawnDeterminatorSpawn.position, SpawnDeterminatorSpawn.rotation);
+        }
     }
     public void GenerateBuilding()
     {
-      for (int i = 0; i < BuildingSlots.Length; i++)
+        for (int i = 0; i < BuildingSlots.Length; i++)
         {
             Instantiate(Buildings[Random.Range(0, Buildings.Length)], BuildingSlots[i].transform);
         }
-        
-       
+
+
     }
     void GenerateRoad()
     {
@@ -51,7 +54,7 @@ public class EnviromentGeneration : MonoBehaviour
     }
     void GenerateObstacle()
     {
-        for (int i = 0;i < ObstaclePoints.Length && i < Difficulty+1; i++)
+        for (int i = 0; i < ObstaclePoints.Length && i < Difficulty + 1; i++)
         {
             Instantiate(ObstacleTemplate, ObstaclePoints[i]);
         }
