@@ -7,6 +7,7 @@ TagManager:
   - Obstacle
   - Collectible
   - Wall
+  - ControlGiver
   layers:
   - Default
   - TransparentFX
