@@ -26,7 +26,7 @@ public class PlayerManager : MonoBehaviour
     {
         mainColl = GetComponent<BoxCollider>();
         PlayerLives = PlayerLivesMax;
-        isLevel = GameObject.Find("LevelScripts").GetComponent<SceneManager>().isGameLevel;
+        isLevel = GameObject.Find("LevelScripts").GetComponent<LevelManager>().isGameLevel;
         if (isLevel) { curGear = 1; }
     }
 

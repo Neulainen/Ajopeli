@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class SceneManager : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
     bool playerHasControl;
 
