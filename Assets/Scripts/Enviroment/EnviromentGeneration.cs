@@ -3,11 +3,15 @@ using UnityEngine;
 public class EnviromentGeneration : MonoBehaviour
 {
     //Other Scripts and var determined by them   
-    public LevelManager levelManager;
+    public GameObject LevelScript;
+    LevelManager LevelManager;
     bool CruiseMode; 
-    int Difficulty;
+    int difficulty;
     bool gameOver;
     bool playerHasControl;
+    int levelSize;
+        int curSize;
+    bool allSpawned;
 
     /*
     Prefab spawnables. Buildings, road and Obstacle template spawn enviroment objects that also generate
@@ -27,25 +31,38 @@ public class EnviromentGeneration : MonoBehaviour
     public Transform SpawnDeterminatorSpawn, levelMarkPoint, RoadSpawnPos;
     public Transform[] BuildingSlots, ObstaclePoints;
 
-
+    //Used for determination of level length
     void Start()
     {
-        Difficulty = levelManager.Difficulty;
+        LevelManager = LevelScript.GetComponent<LevelManager>();
+        levelSize = LevelManager.levelSize;
+
         DoGeneration();
         Instantiate(levelMark,levelMarkPoint.position,levelMarkPoint.rotation);
     }
 
     void Update()
     {
-        gameOver = GetComponent<PlayerManager>().gameOver;
+        playerHasControl = LevelManager.playerHasControl;
+        CruiseMode = LevelManager.cruiseMode;
+        gameOver = LevelManager.gameOver;
+        difficulty = LevelManager.Difficulty;
+        if(levelSize < curSize)
+        {
+            CruiseMode = true;
+            allSpawned = true;//aloita toimenpiteet voiton merkitsemiseksi
+            if (curSize > levelSize + 2)
+            {
 
-        playerHasControl = GetComponent<LevelManager>().playerHasControl;
-        CruiseMode = GetComponent<LevelManager>().cruiseMode;
+            }
+        }
+        
     }
     public void DoGeneration()
     {
         if (!gameOver)
         {
+            curSize++;
             GenerateBuildings();
             GenerateRoad();
             if (!CruiseMode) { GenerateObstacle(); }
@@ -67,7 +84,7 @@ public class EnviromentGeneration : MonoBehaviour
     {
         if (playerHasControl)
         {
-            for (int i = 0; i < ObstaclePoints.Length && i < Difficulty + 1; i++)
+            for (int i = 0; i < ObstaclePoints.Length && i < difficulty + 1; i++)
             {
                 Instantiate(ObstacleTemplate, ObstaclePoints[i]);
             }

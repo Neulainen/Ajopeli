@@ -19,7 +19,8 @@ public class Obstacle : MonoBehaviour
     {
         if (CompareTag("Player"))
         {
-            //objektin rikkoutumisanimaatio?
+            
+           Destroy(gameObject);
         }
     }
 }

@@ -147,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 15697250}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 100, y: -5, z: 300}
+  m_LocalPosition: {x: 100, y: -5, z: 250}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -295,6 +295,7 @@ GameObject:
   - component: {fileID: 327045612}
   - component: {fileID: 327045611}
   - component: {fileID: 327045610}
+  - component: {fileID: 327045613}
   m_Layer: 0
   m_Name: CameraActual
   m_TagString: Untagged
@@ -376,6 +377,102 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
+--- !u!82 &327045613
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327045609}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: aebecd563ef0da24792fe2b83397aa08, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &382900990
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,7 +573,7 @@ Transform:
   m_GameObject: {fileID: 515753079}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -100, y: -5, z: 300}
+  m_LocalPosition: {x: -100, y: -5, z: 250}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -894,11 +991,17 @@ Transform:
   - {fileID: 1233109920}
   m_Father: {fileID: 962844290}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1114999944 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7226642691731946153, guid: eae1824c0fd98244dbb414c3a8a51354, type: 3}
+--- !u!114 &1114999946 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 704790758339818451, guid: eae1824c0fd98244dbb414c3a8a51354, type: 3}
   m_PrefabInstance: {fileID: 560316025924926097}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf240ffb9b6cb54886c2fa38703c86a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1199927591
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,13 +1085,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f966eab58cb3f499b27b9c8afe8dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enviromentGeneration: {fileID: 1235791095}
   playerHasControl: 0
+  giveControl: 0
   isGameLevel: 1
   cruiseMode: 0
   gameOver: 0
   wasVictorious: 0
   Difficulty: 0
+  levelSize: 50
 --- !u!114 &1200949479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1001,7 +1105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc8e462993223f4d82a7f291766ac23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1114999944}
+  LevelManager: {fileID: 1200949478}
+  PlayerManager: {fileID: 1114999946}
   timerText: {fileID: 620218511}
   speedText: {fileID: 1504857890}
   live1: {fileID: 574150976}
@@ -1083,16 +1188,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99343e23aeb2f5c49956416883ab0661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelManager: {fileID: 0}
+  LevelScript: {fileID: 1200949476}
   Buildings:
   - {fileID: 5408105523453715511, guid: 9a57ef7bde424464a9efceb9b9f15efb, type: 3}
   Road: {fileID: 6343204691974674914, guid: 742f80c2b5c76e645b18089e3827dd31, type: 3}
   ObstacleTemplate: {fileID: 5549973494267144732, guid: 002ff4b4d495f2745a8fa955c35c66cf, type: 3}
-  SpawnMark: {fileID: 0}
+  SpawnMark: {fileID: 2632141992914980534, guid: c1265b08bedd0ff4f8489a9bf0b6b26a, type: 3}
   levelMark: {fileID: 7836845089318510815, guid: abe4a3ba34450ec479dd93a389a05bf3, type: 3}
   SpawnDeterminatorSpawn: {fileID: 131349148}
   levelMarkPoint: {fileID: 131349148}
-  RoadSpawnPos: {fileID: 0}
+  RoadSpawnPos: {fileID: 168618862}
   BuildingSlots:
   - {fileID: 518845980}
   - {fileID: 152618459}
@@ -1492,8 +1597,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.690566, g: 0.37981227, b: 0.07687427, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.381132, g: 0.23000215, b: 0.082698405, a: 1}
+  m_Intensity: 2
   m_Range: 150.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1526,7 +1631,7 @@ Light:
     m_UseCullingMatrixOverride: 0
   m_Cookie: {fileID: 0}
   m_DrawHalo: 1
-  m_Flare: {fileID: 0}
+  m_Flare: {fileID: 12100000, guid: 31223d7767a88c743a6acfd1764f69b8, type: 2}
   m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
@@ -1836,6 +1941,10 @@ PrefabInstance:
       propertyPath: moveWithCustomTransform
       value: 
       objectReference: {fileID: 497435954}
+    - target: {fileID: 704790758339818451, guid: eae1824c0fd98244dbb414c3a8a51354, type: 3}
+      propertyPath: LevelManager
+      value: 
+      objectReference: {fileID: 1200949478}
     - target: {fileID: 1935371506525465697, guid: eae1824c0fd98244dbb414c3a8a51354, type: 3}
       propertyPath: m_ClearFlags
       value: 1

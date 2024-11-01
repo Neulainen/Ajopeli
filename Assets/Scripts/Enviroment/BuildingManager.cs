@@ -4,33 +4,42 @@ public class BuildingManager : MonoBehaviour
 {
     float speed;
     bool gameOver;
+
+    /*
+    Used to assing Decoration objects on buildings at random
+    */
     public GameObject[] deco;
     public Transform[] decoSlot;
-    public Color[] WindowColor;
+
+    
     public bool isBuilding;
 
+    //Used to determine window color at random
+    Material material;
+    public Color[] WindowColor;
+
+    //Determines when building is destroyed
     Transform DestructionPoint;
-    // Start is called before the first frame update
     void Start()
-    {
+    { 
         DestructionPoint = GameObject.Find("DestructionPoint").transform;
+
         for (int i = 0; i < decoSlot.Length; i++)
         {
             Instantiate(deco[Random.Range(0, deco.Length)], decoSlot[i]);
         }
         if (isBuilding)
         {
-            //Arvo ikkunoille väri
+            material = GetComponent<MeshRenderer>().material;
+            material.SetColor("_EmissionColor", WindowColor[Random.Range(0,WindowColor.Length)]);
         }
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
         speed = GameObject.Find("=Player=").GetComponent<PlayerManager>().curSpeed;
-        gameOver = GameObject.Find("=Player=").GetComponent<PlayerManager>().gameOver;
+        gameOver = GameObject.Find("LevelScripts").GetComponent<LevelManager>().gameOver;
         Movement();
     }
     void Movement()

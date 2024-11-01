@@ -10,7 +10,7 @@ public class TireAnimator : MonoBehaviour
     public Transform backTires;
     void Update()
     {
-        gameOver = GameObject.Find("=Player=").GetComponent<PlayerManager>().gameOver;
+        gameOver = GameObject.Find("LevelScripts").GetComponent<LevelManager>().gameOver;
         if(!gameOver)
         {
             speed = GameObject.Find("=Player=").GetComponent<PlayerManager>().curSpeed;

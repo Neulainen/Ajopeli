@@ -23,7 +23,7 @@ public class ObstacleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        endGame = GameObject.Find("=Player=").GetComponent<PlayerManager>().gameOver;
+        endGame = GameObject.Find("LevelScripts").GetComponent<LevelManager>().gameOver;
         if (!endGame)
         {
             speed = GameObject.Find("=Player=").GetComponent<PlayerManager>().curSpeed;

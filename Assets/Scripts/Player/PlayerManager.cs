@@ -3,31 +3,26 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public LevelManager LevelManager;
-    bool isLevel;
-    bool playerHasControl;
-
-    public BoxCollider mainColl;
-
-    public bool gameOver;
+    bool isLevel, gameOver, playerHasControl; 
 
     public short[] gearSpeeds;
-    public float curSpeed;
-    public float SteerInput;
+    public float curSpeed, SteerInput;
     public short curGear = 1;
     public ParticleSystem DMG1, DMG2, DMG3;
 
     public float[] steerSpeeds;
 
-    public Transform carBody;
-
     readonly private short PlayerLivesMax = 3;
     public int PlayerLives;
+
     // Start is called before the first frame update
     void Start()
     {
-        mainColl = GetComponent<BoxCollider>();
-        LevelManager = GetComponent<LevelManager>();
-        isLevel = GetComponent<LevelManager>().isGameLevel;
+        LevelManager = LevelManager.GetComponent<LevelManager>();
+
+        isLevel = LevelManager.isGameLevel;
+        gameOver = LevelManager.gameOver;
+
         PlayerLives = PlayerLivesMax;
         if (isLevel) { curGear = 1; }
     }
@@ -35,7 +30,8 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       playerHasControl = GetComponent<LevelManager>().playerHasControl;
+       playerHasControl = LevelManager.playerHasControl;
+       gameOver = LevelManager.gameOver;
        
         ChangeGear();
         curSpeed = DetermineSpeed(curGear);
@@ -112,7 +108,8 @@ public class PlayerManager : MonoBehaviour
     }
     void GameOver()
     {
-        gameOver = true;
+       LevelManager.gameOver = true;
+       LevelManager.wasVictorious = false;
     }
     void Crash()
     {
@@ -145,11 +142,11 @@ public class PlayerManager : MonoBehaviour
         {
             if (playerHasControl)
             {
-                LevelManager.playerHasControl = false;
+                LevelManager.giveControl = false;
             }
             else if (!playerHasControl)
             {
-                LevelManager.playerHasControl = true;
+                LevelManager.giveControl = true;
             }
 
         }
