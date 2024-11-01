@@ -30,9 +30,10 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         realSpeed = player.GetComponent<PlayerManager>().curSpeed;
-        playerHasControl = player.GetComponent<PlayerManager>().hasControl;
-        gameOver = player.GetComponent<PlayerManager>().gameOver;
         playerLives = player.GetComponent<PlayerManager>().PlayerLives;
+        playerHasControl = player.GetComponent<LevelManager>().playerHasControl;
+        gameOver = player.GetComponent<LevelManager>().gameOver;
+       
         if (playerHasControl && !gameOver)
         {
             elapsedTime += Time.deltaTime;

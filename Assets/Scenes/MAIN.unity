@@ -982,7 +982,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f966eab58cb3f499b27b9c8afe8dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGameLevel: 0
+  enviromentGeneration: {fileID: 1235791095}
+  playerHasControl: 0
+  isGameLevel: 1
+  cruiseMode: 0
+  gameOver: 0
+  wasVictorious: 0
+  Difficulty: 0
 --- !u!114 &1200949479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1077,26 +1083,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99343e23aeb2f5c49956416883ab0661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1114999944}
-  CruiseMode: 0
-  Difficulty: 0
+  levelManager: {fileID: 0}
+  Buildings:
+  - {fileID: 5408105523453715511, guid: 9a57ef7bde424464a9efceb9b9f15efb, type: 3}
+  Road: {fileID: 6343204691974674914, guid: 742f80c2b5c76e645b18089e3827dd31, type: 3}
+  ObstacleTemplate: {fileID: 5549973494267144732, guid: 002ff4b4d495f2745a8fa955c35c66cf, type: 3}
+  SpawnMark: {fileID: 0}
+  levelMark: {fileID: 7836845089318510815, guid: abe4a3ba34450ec479dd93a389a05bf3, type: 3}
+  SpawnDeterminatorSpawn: {fileID: 131349148}
+  levelMarkPoint: {fileID: 131349148}
+  RoadSpawnPos: {fileID: 0}
   BuildingSlots:
   - {fileID: 518845980}
   - {fileID: 152618459}
   - {fileID: 515753080}
   - {fileID: 15697251}
-  Buildings:
-  - {fileID: 5408105523453715511, guid: 9a57ef7bde424464a9efceb9b9f15efb, type: 3}
-  RoadPos: {fileID: 168618862}
-  Road: {fileID: 6343204691974674914, guid: 742f80c2b5c76e645b18089e3827dd31, type: 3}
   ObstaclePoints:
   - {fileID: 382900991}
   - {fileID: 2068504373}
-  ObstacleTemplate: {fileID: 5549973494267144732, guid: 002ff4b4d495f2745a8fa955c35c66cf, type: 3}
-  SpawnDeterminatorSpawn: {fileID: 131349148}
-  SpawnDeterminator: {fileID: 2632141992914980534, guid: c1265b08bedd0ff4f8489a9bf0b6b26a, type: 3}
-  levelMarkPoint: {fileID: 131349148}
-  levelMark: {fileID: 7836845089318510815, guid: abe4a3ba34450ec479dd93a389a05bf3, type: 3}
 --- !u!1 &1346051279
 GameObject:
   m_ObjectHideFlags: 0

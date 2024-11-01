@@ -2,65 +2,66 @@ using UnityEngine;
 
 public class EnviromentGeneration : MonoBehaviour
 {
+    //Other Scripts and var determined by them   
+    public LevelManager levelManager;
+    bool CruiseMode; 
+    int Difficulty;
     bool gameOver;
     bool playerHasControl;
-    public GameObject player;
 
-
-    public bool CruiseMode;
-
-    public int Difficulty;
-
-    public Transform[] BuildingSlots;
+    /*
+    Prefab spawnables. Buildings, road and Obstacle template spawn enviroment objects that also generate
+    their own subobjects. 
+    Marks are used to determine certain event in game. SpawnMark determines when to spawn a new enviroment set,
+    level mark marks the beginning and end of level. First level mark is spawned along with the first enviroment generation set, 
+    second is spawned by LevelManager once it determines the level is over. These also take away the players ability to control
+    the vehicle.
+    */
     public GameObject[] Buildings;
+    public GameObject Road, ObstacleTemplate, SpawnMark, levelMark;
+    /*
+     Used for determining the spawnlocations of these gameobjects relative to the world. Obstacle points are determined trough
+    LevelManager difficulty. Each level of difficulty adds one ObstacleTemplate / enviromentGeneration. 
+    Building slots are automatically filled with the Buildings of the Buildings array.
+    */
+    public Transform SpawnDeterminatorSpawn, levelMarkPoint, RoadSpawnPos;
+    public Transform[] BuildingSlots, ObstaclePoints;
 
-    public Transform RoadPos;
-    public GameObject Road;
-
-    public Transform[] ObstaclePoints;
-    public GameObject ObstacleTemplate;
-
-    //Used for spawning the buildings in correct intervals
-    public Transform SpawnDeterminatorSpawn;
-    public GameObject SpawnDeterminator;
-    //Used for marking level start and end
-    public Transform levelMarkPoint;
-    public GameObject levelMark;
 
     void Start()
     {
+        Difficulty = levelManager.Difficulty;
         DoGeneration();
         Instantiate(levelMark,levelMarkPoint.position,levelMarkPoint.rotation);
     }
 
     void Update()
     {
-        gameOver = player.GetComponent<PlayerManager>().gameOver;
-        playerHasControl = player.GetComponent<PlayerManager>().hasControl;
+        gameOver = GetComponent<PlayerManager>().gameOver;
 
+        playerHasControl = GetComponent<LevelManager>().playerHasControl;
+        CruiseMode = GetComponent<LevelManager>().cruiseMode;
     }
     public void DoGeneration()
     {
         if (!gameOver)
         {
-            GenerateBuilding();
+            GenerateBuildings();
             GenerateRoad();
             if (!CruiseMode) { GenerateObstacle(); }
-            Instantiate(SpawnDeterminator, SpawnDeterminatorSpawn.position, SpawnDeterminatorSpawn.rotation);
+            Instantiate(SpawnMark, SpawnDeterminatorSpawn.position, SpawnDeterminatorSpawn.rotation);
         }
     }
-    public void GenerateBuilding()
+    public void GenerateBuildings()
     {
         for (int i = 0; i < BuildingSlots.Length; i++)
         {
             Instantiate(Buildings[Random.Range(0, Buildings.Length)], BuildingSlots[i].transform);
         }
-
-
     }
     void GenerateRoad()
     {
-        Instantiate(Road, RoadPos);
+        Instantiate(Road, RoadSpawnPos);
     }
     void GenerateObstacle()
     {
@@ -71,7 +72,5 @@ public class EnviromentGeneration : MonoBehaviour
                 Instantiate(ObstacleTemplate, ObstaclePoints[i]);
             }
         }
-
     }
-
 }
