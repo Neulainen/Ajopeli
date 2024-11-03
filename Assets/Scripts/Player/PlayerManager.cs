@@ -162,7 +162,7 @@ public class PlayerManager : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Wall"))
         {
-                transform.Translate(-SteerInput/2, 0, 0);    
+                transform.Translate(-SteerInput*Time.deltaTime, 0, 0);    
         }
         else if (collision.gameObject.CompareTag("ControlGiver"))
         {

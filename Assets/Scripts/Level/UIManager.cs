@@ -133,7 +133,7 @@ public class UIManager : MonoBehaviour
 
         float distChange = (fauxDist - realDist);
         fauxDist -= distChange * Time.deltaTime;
-        distance.text = fauxDist.ToString() + "m";
+        distance.text = Mathf.FloorToInt(fauxDist).ToString() + "m";
     }
     void LevelScreen()
     {
@@ -165,7 +165,7 @@ public class UIManager : MonoBehaviour
                 EndButtons.SetActive(true);
                 string TimeTaken = timerString;
                 float avgSpeed = (LevelManager.levelSize * 50) / elapsedTime;
-                string avgSpeedString = avgSpeed.ToString();
+                string avgSpeedString = Mathf.FloorToInt(avgSpeed).ToString();
                 wRunStats.text = "Time taken: " + TimeTaken + "\n" + "Average Speed: " + avgSpeedString;
 
                 hasRunEnd = true;
@@ -177,8 +177,8 @@ public class UIManager : MonoBehaviour
                 SoundManager.PlaySound("LoseSound");
                 LoseScreen.SetActive(true);
                 EndButtons.SetActive(true);
-                string DistanceSurvived = (LevelManager.curDist / 1000).ToString();
-                lRunStats.text = "Time Survived: " + timerString + "\n" + "Distance Survived: " + DistanceSurvived + "km";
+                string DistanceSurvived = Mathf.FloorToInt(fauxDist).ToString();
+                lRunStats.text = "Time Survived: " + timerString + "\n" + "Distance Survived: " + DistanceSurvived + "m";
 
                 hasRunEnd = true;
             }
