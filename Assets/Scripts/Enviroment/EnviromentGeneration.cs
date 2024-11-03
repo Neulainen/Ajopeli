@@ -5,11 +5,11 @@ public class EnviromentGeneration : MonoBehaviour
     //Other Scripts and var determined by them   
     public GameObject LevelScript;
     LevelManager LevelManager;
-    bool CruiseMode; 
+    bool CruiseMode;
     bool gameOver;
     bool playerHasControl;
     int levelSize;
-        public int curSize;
+    public int curSize;
 
     /*
     Prefab spawnables. Buildings, road and Obstacle template spawn enviroment objects that also generate
@@ -28,7 +28,7 @@ public class EnviromentGeneration : MonoBehaviour
     public Transform SpawnDeterminatorSpawn, levelMarkPoint, RoadSpawnPos, ObstaclePoint;
     public Transform[] BuildingSlots;
 
-   
+
 
     //Used for determination of level length
     void Start()
@@ -40,7 +40,7 @@ public class EnviromentGeneration : MonoBehaviour
 
     }
 
-    void Update()
+    void LateUpdate()
     {
         playerHasControl = LevelManager.playerHasControl;
         CruiseMode = LevelManager.cruiseMode;
@@ -61,6 +61,7 @@ public class EnviromentGeneration : MonoBehaviour
     }
     public void GenerateBuildings()
     {
+
         for (int i = 0; i < BuildingSlots.Length; i++)
         {
             Instantiate(Buildings[Random.Range(0, Buildings.Length)], BuildingSlots[i].transform);
@@ -74,7 +75,7 @@ public class EnviromentGeneration : MonoBehaviour
     {
         if (playerHasControl)
         {
-                Instantiate(ObstacleTemplate, ObstaclePoint);       
+            Instantiate(ObstacleTemplate, ObstaclePoint);
         }
     }
     void CheckLevelProgress()

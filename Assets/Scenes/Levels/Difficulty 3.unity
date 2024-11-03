@@ -507,6 +507,7 @@ MonoBehaviour:
   WinScreen: {fileID: 1724142651}
   LoseScreen: {fileID: 904499224}
   EndButtons: {fileID: 844271379}
+  NextButton: {fileID: 203692017}
   wRunStats: {fileID: 1022598507}
   lRunStats: {fileID: 1797644582}
 --- !u!1 &327045609
@@ -2265,7 +2266,7 @@ MonoBehaviour:
   isGameLevel: 1
   cruiseMode: 0
   curDist: 0
-  levelSize: 70
+  levelSize: 75
 --- !u!1 &1233109919
 GameObject:
   m_ObjectHideFlags: 0

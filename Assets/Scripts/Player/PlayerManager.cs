@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         playerHasControl = LevelManager.playerHasControl;
         gameOver = LevelManager.gameOver;
@@ -66,8 +66,8 @@ public class PlayerManager : MonoBehaviour
                 }
 
         }
-        
-        
+
+
     }
     void Movement(float input)
     {
@@ -80,7 +80,7 @@ public class PlayerManager : MonoBehaviour
         {
             //Force player to middle when not in control
             Vector3 midPoint = Vector3.zero;
-            float distToMid =  midPoint.x - transform.position.x;
+            float distToMid = midPoint.x - transform.position.x;
             distToMid = Mathf.Clamp(distToMid, -1, 1);
             transform.Translate(new Vector3(distToMid * Time.deltaTime, 0, 0));
         }
@@ -94,7 +94,7 @@ public class PlayerManager : MonoBehaviour
                 if (curGear < gearSpeeds.Length - 1)
                 {
                     curGear++;
-                    
+
                 }
             }
             else if (Input.GetButtonDown("GearDown"))
@@ -162,7 +162,7 @@ public class PlayerManager : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Wall"))
         {
-                transform.Translate(-SteerInput*Time.deltaTime, 0, 0);    
+            transform.Translate(-SteerInput, 0, 0);
         }
         else if (collision.gameObject.CompareTag("ControlGiver"))
         {

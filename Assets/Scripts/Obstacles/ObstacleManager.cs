@@ -39,6 +39,10 @@ public class ObstacleManager : MonoBehaviour
     {
         int SafePoint1 = Random.Range(0, ObstaclePoints.Length);
         int SafePoint2 = Random.Range(0, ObstaclePoints.Length);
+        if(SafePoint1 == SafePoint2) 
+        {
+            SafePoint2 = Random.Range(0, ObstaclePoints.Length);
+        }
         for (int i = 0; i < ObstaclePoints.Length; i++)
         {
             if (i != SafePoint1 && i !=SafePoint2)

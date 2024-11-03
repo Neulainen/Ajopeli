@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+
     public SoundManager SoundManager;
     public EnviromentGeneration EnviromentGeneration;
 
@@ -12,10 +13,9 @@ public class LevelManager : MonoBehaviour
     public bool cruiseMode; //stops Obstacles from spawning
     public int curDist;
 
-    //Level Start
-    [System.NonSerialized]
-    public int levelSize; 
-    public int levelSizeRange;
+    //Level Start    
+    [Range(40, 200)]
+    public int levelSize;
     [System.NonSerialized]
     public bool gameStart; //Starts everything
 
@@ -27,42 +27,28 @@ public class LevelManager : MonoBehaviour
 
     //Misc
     bool soundsStarted;
-
-    void Awake()
-    {
-        GenerateLevel();
-
-    }
     void Update()
     {
-        curDist = EnviromentGeneration.curSize*50-100;
+        curDist = EnviromentGeneration.curSize*40-100;
         if (gameStart)
         {
             StartLevel();
         }
         if (prepareEnd)
-        {
-            SoundManager.StopSound("CarNoise");
-            SoundManager.StopSound("EngineNoise");
-            SoundManager.StopMusicMix();
+        {     
             EndLevel();
         }
-
-
-    }
-    void GenerateLevel()
-    {
-        levelSize = Random.Range(50,levelSizeRange);
     }
     void EndLevel()
     {
         playerHasControl = false;
-
+        SoundManager.StopSound("CarNoise");
+        SoundManager.StopSound("EngineNoise");
+        SoundManager.StopMusicMix();
     }
     void StartLevel()
     {
         if(!soundsStarted) { BeginSounds(); soundsStarted = true; }
-        
     }
     void BeginSounds()
     {

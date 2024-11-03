@@ -43,6 +43,7 @@ public class UIManager : MonoBehaviour
 
     //Game end screens, fadescreen and endbuttons
     public GameObject FadeScreen, WinScreen, LoseScreen, EndButtons;
+    public TMP_Text NextButton;
     //StatTexts
     public TMP_Text wRunStats, lRunStats;
 
@@ -137,9 +138,11 @@ public class UIManager : MonoBehaviour
     }
     void LevelScreen()
     {
+        //Arpoo tasolle nimen
         string first, last;
         first = part_1[Random.Range(0, part_1.Length - 1)];
         last = part_2[Random.Range(0, part_2.Length - 1)];
+
         levelTitle = first + " " + last;
         LevelTitleText.text = levelTitle;
 
@@ -165,8 +168,17 @@ public class UIManager : MonoBehaviour
                 EndButtons.SetActive(true);
                 string TimeTaken = timerString;
                 float avgSpeed = (LevelManager.levelSize * 50) / elapsedTime;
-                string avgSpeedString = Mathf.FloorToInt(avgSpeed).ToString();
-                wRunStats.text = "Time taken: " + TimeTaken + "\n" + "Average Speed: " + avgSpeedString;
+                string avgSpeedString = Mathf.FloorToInt(avgSpeed*2).ToString();
+                wRunStats.text = "Time taken: " + TimeTaken + "\n" + "Average Speed: " + avgSpeedString+"Km/h";
+                if(SceneManager.GetActiveScene().buildIndex != 4)
+                {
+                    NextButton.text = "Next Level";
+                }
+                else
+                {
+                    NextButton.text = "Return to menu";
+                }
+                
 
                 hasRunEnd = true;
             }
@@ -179,6 +191,8 @@ public class UIManager : MonoBehaviour
                 EndButtons.SetActive(true);
                 string DistanceSurvived = Mathf.FloorToInt(fauxDist).ToString();
                 lRunStats.text = "Time Survived: " + timerString + "\n" + "Distance Survived: " + DistanceSurvived + "m";
+                NextButton.text = "Retry";
+
 
                 hasRunEnd = true;
             }
@@ -186,7 +200,24 @@ public class UIManager : MonoBehaviour
     }
     public void NextLevel()
     {
-        SceneManager.LoadScene("Main");
+        if (wasVictorious)
+        {
+            
+            if (SceneManager.GetActiveScene().buildIndex != 4)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            else
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+       
+        
     }
     public void QuitToMenu()
     {

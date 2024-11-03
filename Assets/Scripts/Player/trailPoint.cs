@@ -19,7 +19,7 @@ public class trailPoint : MonoBehaviour
         if (!gameOver)
         {
             speed = playerManager.curSpeed;
-            transform.Translate(Vector3.back * speed * Time.deltaTime / Modifier);
+            transform.Translate(speed * Time.deltaTime * Vector3.back / Modifier);
         }
            
     }
