@@ -1,25 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class trailPoint : MonoBehaviour
-{
-    float speed;
+{   
+    //Used for simulating forward movement on particle effects
+
+    public LevelManager levelManager;
     bool gameOver;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public PlayerManager playerManager;
+    float speed;
+
+    public int Modifier;
+   
 
     // Update is called once per frame
     void Update()
     {
-        gameOver = GameObject.Find("LevelScripts").GetComponent<LevelManager>().gameOver;
+        gameOver = levelManager.gameOver;
         if (!gameOver)
         {
-            speed = GameObject.Find("=Player=").GetComponent<PlayerManager>().curSpeed;
-            transform.Translate(Vector3.back * speed * Time.deltaTime/8);
+            speed = playerManager.curSpeed;
+            transform.Translate(Vector3.back * speed * Time.deltaTime / Modifier);
         }
            
     }

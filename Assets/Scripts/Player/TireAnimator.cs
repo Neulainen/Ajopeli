@@ -2,24 +2,33 @@ using UnityEngine;
 
 public class TireAnimator : MonoBehaviour
 {
-    float speed;
+    public LevelManager LevelManager;
     bool gameOver;
 
-    public Transform rightTire;
-    public Transform leftTire;
-    public Transform backTires;
+    public PlayerManager PlayerManager;
+    float speed;
+    float input;
+   
+    public Animator animator;
+
+    public Transform frontTires,backTires;
     void Update()
     {
-        gameOver = GameObject.Find("LevelScripts").GetComponent<LevelManager>().gameOver;
+        gameOver = LevelManager.gameOver;
+
         if(!gameOver)
         {
-            speed = GameObject.Find("=Player=").GetComponent<PlayerManager>().curSpeed;
+            speed = PlayerManager.curSpeed;
+            input = PlayerManager.SteerInput;
+
             //Deternime rotationspeed 
             Vector3 wheelSpeed = (Vector3.right * speed / 10) / 6;
             //Rotate wheels forwards
             backTires.transform.Rotate(wheelSpeed);
-            rightTire.transform.Rotate(wheelSpeed);
-            leftTire.transform.Rotate(wheelSpeed);
+            //frontTires.transform.Rotate(wheelSpeed);
+            int animInput = Mathf.FloorToInt(input * 10);
+            animator.SetInteger("Input", animInput);
         }
+
     }
 }

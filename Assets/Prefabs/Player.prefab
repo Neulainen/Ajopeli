@@ -4923,11 +4923,12 @@ Transform:
   m_GameObject: {fileID: 1272093977109374579}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -1.1, z: 1.45}
+  m_LocalPosition: {x: 0, y: -1.1, z: 1.437}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1848040312863671723}
+  - {fileID: 310610294308929929}
   m_Father: {fileID: 5767311799805102501}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1336148577954625330
@@ -19800,38 +19801,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &4731510175507227159
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3550053503993099036}
-  m_Layer: 0
-  m_Name: TireRight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3550053503993099036
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4731510175507227159}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -1.1, z: 1.45}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 310610294308929929}
-  m_Father: {fileID: 5767311799805102501}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5435504004384090516
 GameObject:
   m_ObjectHideFlags: 0
@@ -24838,7 +24807,7 @@ GameObject:
   - component: {fileID: 8334357312715701532}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24882,7 +24851,7 @@ ReflectionProbe:
   m_NearClip: 0.3
   m_FarClip: 1000
   m_ShadowDistance: 300
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_CullingMask:
     serializedVersion: 2
@@ -24907,9 +24876,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbf240ffb9b6cb54886c2fa38703c86a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasControl: 0
-  mainColl: {fileID: 8334357312715701532}
-  gameOver: 0
+  LevelManager: {fileID: 0}
+  SoundManager: {fileID: 0}
   gearSpeeds: 00002d0041005500
   curSpeed: 0
   SteerInput: 0
@@ -24922,7 +24890,6 @@ MonoBehaviour:
   - 12
   - 10
   - 8
-  carBody: {fileID: 1166850993975275216}
   PlayerLives: 0
 --- !u!65 &8334357312715701532
 BoxCollider:
@@ -24977,7 +24944,6 @@ Transform:
   m_Children:
   - {fileID: 7769668678028966450}
   - {fileID: 784938932653630984}
-  - {fileID: 3550053503993099036}
   m_Father: {fileID: 7893983529576287520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8409769347664454397
@@ -24992,8 +24958,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a5720738d6e22a4287cc21542f95107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightTire: {fileID: 3550053503993099036}
-  leftTire: {fileID: 784938932653630984}
+  LevelManager: {fileID: 0}
+  PlayerManager: {fileID: 0}
+  animator: {fileID: 0}
+  frontTires: {fileID: 0}
   backTires: {fileID: 7769668678028966450}
 --- !u!1 &8082406327217937109
 GameObject:
@@ -25065,7 +25033,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 3550053503993099036}
+    m_TransformParent: {fileID: 784938932653630984}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3c23fc7eb50d53247b60d04ced3ea17f, type: 3}
       propertyPath: m_LocalScale.x
@@ -25077,7 +25045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3c23fc7eb50d53247b60d04ced3ea17f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3c23fc7eb50d53247b60d04ced3ea17f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25225,7 +25193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 19cd607c4d34f2240ac3031844b49382, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 19cd607c4d34f2240ac3031844b49382, type: 3}
       propertyPath: m_LocalPosition.y

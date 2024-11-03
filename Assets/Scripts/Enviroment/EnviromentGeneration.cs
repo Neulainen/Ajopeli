@@ -6,20 +6,17 @@ public class EnviromentGeneration : MonoBehaviour
     public GameObject LevelScript;
     LevelManager LevelManager;
     bool CruiseMode; 
-    int difficulty;
     bool gameOver;
     bool playerHasControl;
     int levelSize;
-        int curSize;
-    bool allSpawned;
+        public int curSize;
 
     /*
     Prefab spawnables. Buildings, road and Obstacle template spawn enviroment objects that also generate
     their own subobjects. 
     Marks are used to determine certain event in game. SpawnMark determines when to spawn a new enviroment set,
-    level mark marks the beginning and end of level. First level mark is spawned along with the first enviroment generation set, 
-    second is spawned by LevelManager once it determines the level is over. These also take away the players ability to control
-    the vehicle.
+    level mark marks the beginning and end of level. A LevelMark is spawned with the first generation. 
+    It is used to give the player control when they enter the generated area.
     */
     public GameObject[] Buildings;
     public GameObject Road, ObstacleTemplate, SpawnMark, levelMark;
@@ -28,17 +25,19 @@ public class EnviromentGeneration : MonoBehaviour
     LevelManager difficulty. Each level of difficulty adds one ObstacleTemplate / enviromentGeneration. 
     Building slots are automatically filled with the Buildings of the Buildings array.
     */
-    public Transform SpawnDeterminatorSpawn, levelMarkPoint, RoadSpawnPos;
-    public Transform[] BuildingSlots, ObstaclePoints;
+    public Transform SpawnDeterminatorSpawn, levelMarkPoint, RoadSpawnPos, ObstaclePoint;
+    public Transform[] BuildingSlots;
+
+   
 
     //Used for determination of level length
     void Start()
     {
         LevelManager = LevelScript.GetComponent<LevelManager>();
         levelSize = LevelManager.levelSize;
-
         DoGeneration();
-        Instantiate(levelMark,levelMarkPoint.position,levelMarkPoint.rotation);
+        Instantiate(levelMark, levelMarkPoint.position, levelMarkPoint.rotation);
+
     }
 
     void Update()
@@ -46,17 +45,8 @@ public class EnviromentGeneration : MonoBehaviour
         playerHasControl = LevelManager.playerHasControl;
         CruiseMode = LevelManager.cruiseMode;
         gameOver = LevelManager.gameOver;
-        difficulty = LevelManager.Difficulty;
-        if(levelSize < curSize)
-        {
-            CruiseMode = true;
-            allSpawned = true;//aloita toimenpiteet voiton merkitsemiseksi
-            if (curSize > levelSize + 2)
-            {
 
-            }
-        }
-        
+        CheckLevelProgress();
     }
     public void DoGeneration()
     {
@@ -84,9 +74,23 @@ public class EnviromentGeneration : MonoBehaviour
     {
         if (playerHasControl)
         {
-            for (int i = 0; i < ObstaclePoints.Length && i < difficulty + 1; i++)
+                Instantiate(ObstacleTemplate, ObstaclePoint);       
+        }
+    }
+    void CheckLevelProgress()
+    {
+        if (levelSize < curSize)
+        {
+            CruiseMode = true;
+            if (levelSize + 15 < curSize)
             {
-                Instantiate(ObstacleTemplate, ObstaclePoints[i]);
+                LevelManager.prepareEnd = true;
+            }
+
+            if (levelSize + 25 < curSize)
+            {
+                LevelManager.gameOver = true;
+                LevelManager.wasVictorious = true;
             }
         }
     }

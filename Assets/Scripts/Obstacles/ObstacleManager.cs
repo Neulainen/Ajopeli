@@ -6,18 +6,19 @@ public class ObstacleManager : MonoBehaviour
 {
     float speed;
     bool endGame;
+
+    //Point to spawn into
     Transform DestructionPoint;
     
-    
+    //Where to spawn Obstacles
     public Transform[] ObstaclePoints;
     public GameObject[] Obstacles;
-    public GameObject[] Rewards;
+
     // Start is called before the first frame update
     void Start()
     {
         DestructionPoint = GameObject.Find("DestructionPoint").transform;
-        AttemptGeneration(IsLucky());
-
+        Generation();
     }
 
     // Update is called once per frame
@@ -27,37 +28,26 @@ public class ObstacleManager : MonoBehaviour
         if (!endGame)
         {
             speed = GameObject.Find("=Player=").GetComponent<PlayerManager>().curSpeed;
-            transform.Translate(Vector3.back * speed * Time.deltaTime);
+            transform.Translate(speed * Time.deltaTime * Vector3.back);
             if (transform.position.z < DestructionPoint.position.z)
             {
                 Destroy(gameObject);
             }
         }
     }
-    bool IsLucky()
+    void Generation()
     {
-        int LuckyNum=Random.Range(0, 10);
-        if (LuckyNum == 1 || LuckyNum ==10)
+        int SafePoint1 = Random.Range(0, ObstaclePoints.Length);
+        int SafePoint2 = Random.Range(0, ObstaclePoints.Length);
+        for (int i=SafePoint1; i==SafePoint2; i++)
         {
-            return true;
+            SafePoint2++;
         }
-        else
+        for (int i = 0; i < ObstaclePoints.Length; i++)
         {
-            return false;
-        }
-    }
-    void AttemptGeneration(bool isLucky)
-    {
-        int SafePoint = Random.Range(0, ObstaclePoints.Length);
-        for(int i = 0; i < ObstaclePoints.Length; i++)
-        {
-            if (i != SafePoint&&!isLucky)
+            if (i != SafePoint1 && i !=SafePoint2)
             {
                 Instantiate(Obstacles[Random.Range(0, Obstacles.Length)], ObstaclePoints[i]);
-            }
-            else if (i == SafePoint && isLucky)
-            {
-                Instantiate(Rewards[Random.Range(0, Rewards.Length)], ObstaclePoints[i]);
             }
         }
 
