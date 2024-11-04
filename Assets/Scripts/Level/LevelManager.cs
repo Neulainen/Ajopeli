@@ -30,8 +30,9 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         //Determine current distance. Formula is derived from the knowledge that each segment is about 50 meters,
-        //and there is about 200 meters of no segments that the player traverses trough before the level starts
-        curDist = EnviromentGeneration.curSize*50-200;
+        //and there is about 8 segments/400 meters of no segments that the player traverses trough before the level starts.
+        //Distance passed after object spawning is done doesn't count
+        curDist = EnviromentGeneration.curSize*50-400;
 
         if (gameStart)
         {

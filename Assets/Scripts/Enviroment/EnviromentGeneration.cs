@@ -50,6 +50,8 @@ public class EnviromentGeneration : MonoBehaviour
     }
     public void DoGeneration()
     {
+        //If game is not over, generate enviroment. Keep count of generated segments trough curSize. If we are in cruisemode,
+        //obstacles should not be spawned.
         if (!gameOver)
         {
             curSize++;
@@ -61,7 +63,7 @@ public class EnviromentGeneration : MonoBehaviour
     }
     public void GenerateBuildings()
     {
-
+        //generate a building from array to every slot
         for (int i = 0; i < BuildingSlots.Length; i++)
         {
             Instantiate(Buildings[Random.Range(0, Buildings.Length)], BuildingSlots[i].transform);
@@ -73,6 +75,7 @@ public class EnviromentGeneration : MonoBehaviour
     }
     void GenerateObstacle()
     {
+        //generate obstacle template
         if (playerHasControl)
         {
             Instantiate(ObstacleTemplate, ObstaclePoint);
@@ -80,6 +83,8 @@ public class EnviromentGeneration : MonoBehaviour
     }
     void CheckLevelProgress()
     {
+        //Keep up with level progress. Once the size of the level has been reached, raise appropriate flags and 
+        //prepare for player victory
         if (levelSize < curSize)
         {
             CruiseMode = true;

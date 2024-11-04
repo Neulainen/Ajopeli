@@ -10,8 +10,7 @@ public class MainMenu : MonoBehaviour
     }
     public void StartGame()
     {
-       //HELP is scene index 1, first real levels begin from index 2
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Level1");
     }
     public void HelpPage()
     {

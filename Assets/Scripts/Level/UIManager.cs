@@ -225,18 +225,28 @@ public class UIManager : MonoBehaviour
         if (wasVictorious)
         {
             
-            if (SceneManager.GetActiveScene().buildIndex != 4)
+           switch(SceneManager.GetActiveScene().name)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
-            else
-            {
-                SceneManager.LoadScene("MainMenu");
+                case "Level1":
+                    {
+                        SceneManager.LoadScene("Level2");
+                        break;
+                    }
+                case "Level2":
+                    {
+                        SceneManager.LoadScene("Level3");
+                        break;
+                    }
+                case "Level3":
+                    {
+                        SceneManager.LoadScene("MainMenu");
+                        break;
+                    }
             }
         }
         else
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
        
         
