@@ -11,11 +11,11 @@ public class LevelManager : MonoBehaviour
     public bool playerHasControl; //should player be able to control the vehicle?
     public bool isGameLevel; //Determines if we should treat this scene as a level
     public bool cruiseMode; //stops Obstacles from spawning
-    public int curDist;
+    public int curDist; //Current fauxdistance
 
        
     [Range(40, 200)]
-    public int levelSize;
+    public int levelSize;//LevelSize
     [System.NonSerialized]
     public bool gameStart; //Startflag, used by other scripts
 

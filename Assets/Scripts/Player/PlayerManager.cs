@@ -142,7 +142,7 @@ public class PlayerManager : MonoBehaviour
     }
     void SetDamage()
     {
-        //Set damage indicators
+        //Set damage indicator particle effects
         if (PlayerLives == 2)
         {
             DMG1.Play();

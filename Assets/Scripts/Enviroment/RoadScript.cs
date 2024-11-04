@@ -6,15 +6,17 @@ public class RoadScript : MonoBehaviour
     float speed;
     bool gameOver;
 
-    //
+    //Where to generate lightposts, and lightposts used in this level
     public GameObject LightPosts;
     public Transform[] LightPositions;
+
+    //Destruction point determines when to terminate object
     public Transform DestructionPoint;
 
     // Start is called before the first frame update
     void Start()
     {
-        //find destruction point
+        //find destruction point location
         DestructionPoint = GameObject.Find("DestructionPoint").transform;
 
         //Generate lighposts on road
@@ -30,6 +32,7 @@ public class RoadScript : MonoBehaviour
     {
 
         gameOver = GameObject.Find("LevelScripts").GetComponent<LevelManager>().gameOver;
+
         if (!gameOver)
         {
             //Move towards player with speed determined by player manager
