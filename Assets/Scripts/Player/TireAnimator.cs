@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class TireAnimator : MonoBehaviour
 {
+    //Other scripts and var
     public LevelManager LevelManager;
     bool gameOver;
 
@@ -9,8 +10,10 @@ public class TireAnimator : MonoBehaviour
     float speed;
     float input;
    
+    //Animator used for front tires
     public Animator animator;
 
+    //Transforms of tires
     public Transform frontTires,backTires;
     void Update()
     {
@@ -21,11 +24,14 @@ public class TireAnimator : MonoBehaviour
             speed = PlayerManager.curSpeed;
             input = PlayerManager.SteerInput;
 
-            //Deternime rotationspeed 
+            //Deternime rotationspeed, formula is arbitrary but looks correct enough
             Vector3 wheelSpeed = (Vector3.right * speed / 10) / 6;
-            //Rotate wheels forwards
+
+            //Rotate tires forwards. Can't be applied to front tires
             backTires.transform.Rotate(wheelSpeed);
-            //frontTires.transform.Rotate(wheelSpeed);
+
+            //Sends in player input as integrer. Animator checks if input is greater,
+            //less or equal to 0 and activates correct animation
             int animInput = Mathf.FloorToInt(input * 10);
             animator.SetInteger("Input", animInput);
         }

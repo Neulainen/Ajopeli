@@ -12,6 +12,7 @@ public class SoundManager : MonoBehaviour
         musicTrackID = UnityEngine.Random.Range(0, music.Length - 1);
         foreach (Audio a in sounds)
         {
+            //Generate audio sources to script object, input parameters from Audio objects in sounds[]
             a.audioSource = gameObject.AddComponent<AudioSource>();
             a.audioSource.clip = a.clip;
             a.audioSource.volume = a.volume;
@@ -20,6 +21,7 @@ public class SoundManager : MonoBehaviour
         }
         foreach (Audio a in music)
         {
+            //Same, but for music[]
             a.audioSource = gameObject.AddComponent<AudioSource>();
             a.audioSource.clip = a.clip;
             a.audioSource.volume = a.volume;
@@ -28,6 +30,7 @@ public class SoundManager : MonoBehaviour
         }
         mixStopRun = false;
     }
+    //tools for changing parameters and using the sounds
     public void PlaySound(string clipName)
     {
         Audio a = Array.Find(sounds, Audio => Audio.clipName == clipName);

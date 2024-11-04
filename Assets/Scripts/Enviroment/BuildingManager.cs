@@ -11,7 +11,7 @@ public class BuildingManager : MonoBehaviour
     public GameObject[] deco;
     public Transform[] decoSlot;
 
-    
+    //Check if script is used on a building with windows
     public bool isBuilding;
 
     //Used to determine window color at random
@@ -30,6 +30,7 @@ public class BuildingManager : MonoBehaviour
         }
         if (isBuilding)
         {
+            //generate window colours from array
             material = GetComponent<MeshRenderer>().material;
             material.SetColor("_EmissionColor", WindowColor[Random.Range(0,WindowColor.Length)]);
         }

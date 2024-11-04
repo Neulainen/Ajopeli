@@ -3,13 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    //control buttons
     public void ReturnToMain()
     {
         SceneManager.LoadScene("MainMenu");
     }
     public void StartGame()
     {
-       
+       //HELP is scene index 1, first real levels begin from index 2
         SceneManager.LoadScene(2);
     }
     public void HelpPage()

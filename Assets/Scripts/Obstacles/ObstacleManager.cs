@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour
 {
+    //Var from other scripts
     float speed;
     bool endGame;
 
@@ -14,7 +15,6 @@ public class ObstacleManager : MonoBehaviour
     public Transform[] ObstaclePoints;
     public GameObject[] Obstacles;
 
-    // Start is called before the first frame update
     void Start()
     {
         DestructionPoint = GameObject.Find("DestructionPoint").transform;
@@ -24,6 +24,7 @@ public class ObstacleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Move Object until we reach the destruction point
         endGame = GameObject.Find("LevelScripts").GetComponent<LevelManager>().gameOver;
         if (!endGame)
         {
@@ -37,11 +38,12 @@ public class ObstacleManager : MonoBehaviour
     }
     void Generation()
     {
+        //generate obstacles from array, skip 2 places
         int SafePoint1 = Random.Range(0, ObstaclePoints.Length);
         int SafePoint2 = Random.Range(0, ObstaclePoints.Length);
         if(SafePoint1 == SafePoint2) 
         {
-            SafePoint2 = Random.Range(0, ObstaclePoints.Length);
+            SafePoint2++;
         }
         for (int i = 0; i < ObstaclePoints.Length; i++)
         {

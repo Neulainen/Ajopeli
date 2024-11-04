@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class RoadScript : MonoBehaviour
 {
+    //var from other scripts
     float speed;
     bool gameOver;
+
+    //
     public GameObject LightPosts;
     public Transform[] LightPositions;
     public Transform DestructionPoint;
@@ -11,8 +14,10 @@ public class RoadScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //find destruction point
         DestructionPoint = GameObject.Find("DestructionPoint").transform;
-        //Generate lights on road
+
+        //Generate lighposts on road
         for (int i = 0; i < LightPositions.Length; i++)
         {
             Instantiate(LightPosts, LightPositions[i]);
@@ -23,11 +28,15 @@ public class RoadScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         gameOver = GameObject.Find("LevelScripts").GetComponent<LevelManager>().gameOver;
         if (!gameOver)
         {
+            //Move towards player with speed determined by player manager
             speed = GameObject.Find("=Player=").GetComponent<PlayerManager>().curSpeed;
             transform.Translate(speed * Time.deltaTime * Vector3.back);
+
+            //if we pass the destruction point, object gets removed
             if (transform.position.z < DestructionPoint.position.z)
             {
                 Destroy(gameObject);

@@ -861,12 +861,6 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     audioSource: {fileID: 0}
-  - clipName: Engine 258
-    clip: {fileID: 8300000, guid: 9cba7de44517f774d883e0bb3a8a37b1, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 1
-    audioSource: {fileID: 0}
   - clipName: Coral Snake
     clip: {fileID: 8300000, guid: a953d615f19c9fa438e1f32f1464d6f3, type: 3}
     volume: 0.5

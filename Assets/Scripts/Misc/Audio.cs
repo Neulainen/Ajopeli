@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class Audio
 {
+    //take in different parameters we want to change in our audio clips
     public string clipName;
     public AudioClip clip;
     [Range(0f,1f)]

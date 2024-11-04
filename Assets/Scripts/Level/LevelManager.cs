@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-
+    //Other scripts
     public SoundManager SoundManager;
     public EnviromentGeneration EnviromentGeneration;
 
@@ -13,11 +13,11 @@ public class LevelManager : MonoBehaviour
     public bool cruiseMode; //stops Obstacles from spawning
     public int curDist;
 
-    //Level Start    
+       
     [Range(40, 200)]
     public int levelSize;
     [System.NonSerialized]
-    public bool gameStart; //Starts everything
+    public bool gameStart; //Startflag, used by other scripts
 
     
 
@@ -29,7 +29,10 @@ public class LevelManager : MonoBehaviour
     bool soundsStarted;
     void Update()
     {
-        curDist = EnviromentGeneration.curSize*40-100;
+        //Determine current distance. Formula is derived from the knowledge that each segment is about 50 meters,
+        //and there is about 200 meters of no segments that the player traverses trough before the level starts
+        curDist = EnviromentGeneration.curSize*50-200;
+
         if (gameStart)
         {
             StartLevel();
@@ -41,6 +44,7 @@ public class LevelManager : MonoBehaviour
     }
     void EndLevel()
     {
+        //Takes away player control and stops looped sounds
         playerHasControl = false;
         SoundManager.StopSound("CarNoise");
         SoundManager.StopSound("EngineNoise");
@@ -52,6 +56,7 @@ public class LevelManager : MonoBehaviour
     }
     void BeginSounds()
     {
+        //Start looped sounds
         SoundManager.PlaySound("CarNoise");
         SoundManager.PlaySound("EngineNoise");
         SoundManager.PlayMusicMix();

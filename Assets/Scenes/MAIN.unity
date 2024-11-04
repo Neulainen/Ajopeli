@@ -507,6 +507,7 @@ MonoBehaviour:
   WinScreen: {fileID: 1724142651}
   LoseScreen: {fileID: 904499224}
   EndButtons: {fileID: 844271379}
+  NextButton: {fileID: 0}
   wRunStats: {fileID: 1022598507}
   lRunStats: {fileID: 1797644582}
 --- !u!1 &327045609
@@ -856,12 +857,6 @@ MonoBehaviour:
     audioSource: {fileID: 0}
   - clipName: Sparkle
     clip: {fileID: 8300000, guid: 1e82c8176e56542409a459339e686778, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 1
-    audioSource: {fileID: 0}
-  - clipName: Engine 258
-    clip: {fileID: 8300000, guid: 9cba7de44517f774d883e0bb3a8a37b1, type: 3}
     volume: 0.5
     pitch: 1
     loop: 1
