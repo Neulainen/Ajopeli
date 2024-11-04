@@ -195,7 +195,7 @@ public class UIManager : MonoBehaviour
                 }
                 else
                 {
-                    NextButton.text = "Return to menu";
+                    NextButton.text = "Quit to menu";
                 }
                 
 
